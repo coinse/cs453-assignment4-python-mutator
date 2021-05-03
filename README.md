@@ -3,7 +3,7 @@
 With this assignment, we will try implementing a basic mutation testing tool for Python that can mutate the source code, run given `pytest` test suites, report changed behaviour, and generate kill matrices. The skeleton code, called `pmut.py`, specifies the required functionalities. Assume that the project you want to apply mutation testing to is scored under directory `examples/example1`. When you invoke `pmut.py` as follows:
 
 ```bash
-$ python3 pmut.py --action mutate --source examples/example1 --output ./mutation_diffs --km ./kill_matrix
+$ python3 pmut.py --action mutate --source examples/example1 --mutants ./mutation_diffs --kill ./kill_matrix
 ```
 
 it should apply mutation operators to all files under `examples/example1`, one mutation to one location in one file at a time, and generate mutants under `./mutated_versions`. You should generate each mutant as a diff against the original program, so that you can get the mutated version when you apply the patch from the root directory of the original project. Each diff file should be named using the following naming convention:
@@ -27,15 +27,24 @@ The tool should operate in two different action modes, which is specified by the
 1. Mutation mode (`--action = mutate`)
 
 ```bash
-$ python pmut.py --action mutate --source [source directory] --output [output directory]
+$ python pmut.py --action mutate --source [source directory] --mutants [mutation diff directory]
+Total number of mutated files: XXX
+Total number of mutants generated: XXX
+$ 
 ```
-The tool should mutate whatever it finds under the source directory, and create the resulting mutation diff patches under the output directory: follow the naming convention above.
+The tool should mutate whatever it finds under the source directory, and create the resulting mutation diff patches under the mutation diff directory: use the naming convention specified above. After mutation, the tool should report the number of mutants generated.
+
 
 2. Execution mode (`--action = execute`)
-```
+```bash
 $ python pmut.py --action execute --source [source directory] --mutants [mutation diff directory] --kill [kill matrix directory]
+Total test functions found: XXX
+Total killed mutants: XXX
+Mutation Score: XX.XX% (XX / XX)
 ```
-The tool should read all diffs in mutation diff directory one by one, apply the mutation to the source directory, execute the `pytest` test cases in the source directory one by one, and write the output to the kill matrix directory. In the kill matrix directory, there should be three files:
+The tool should read all diffs in mutation diff directory one by one, apply the mutation to the source directory, execute the `pytest` test cases in the source directory one by one, and write the output to the kill matrix directory. It should also print out three lines of information about mutant executions: total test functions, total killed mutants, and the mutation score, down to two digits below decimal point.
+
+In the kill matrix directory, there should be three files:
 
 - Test Case Index File (`test_index.json`): this file should contain the dictionary of test case name to kill matrix row index. Use `[test function name]@[pytest file name without .py]` naming convention for dictionary keys.
 - Mutant Index File (`mutation_index.json`): this file should contain the dictionary of mutant name to kill matrix column Index. Use the same mutant naming sonvention for dictionary keys.
