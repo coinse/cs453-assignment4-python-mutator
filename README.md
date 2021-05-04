@@ -35,7 +35,7 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_CONDITIONALS-BOUNDARY_2_00.diff:\
+example_CONDITIONALS-BOUNDARY_2_00.diff:
 ```
 2c2
 <     if (a < b):
@@ -43,7 +43,7 @@ example_CONDITIONALS-BOUNDARY_2_00.diff:\
 >     if (a <= b):
 ```
 
-example_CONDITIONALS-BOUNDARY_4_00.diff:\
+example_CONDITIONALS-BOUNDARY_4_00.diff:
 ```
 4c4
 <     if (b > c):
@@ -66,7 +66,7 @@ def foo(a):
 
 should yield following diffs:
 
-example1_INCREMENTS_4_00.diff:\
+example1_INCREMENTS_4_00.diff:
 ```
 4c4
 <       x += 3
@@ -89,7 +89,7 @@ def foo(a, b):
 
 should yield following diffs:
 
-example2_INVERT-NEGS_2_00.diff:\
+example2_INVERT-NEGS_2_00.diff:
 ```
 2c2
 <   x = -3 + 4 * (a - b)
@@ -113,7 +113,7 @@ def foo(a, b):
 
 should yield following diffs:
 
-example2_MATH_2_00.diff:\
+example2_MATH_2_00.diff:
 ```
 2c2
 <   x = -3 + 4 * (a - b)
@@ -121,7 +121,7 @@ example2_MATH_2_00.diff:\
 >   x = -3 - 4 * (a - b)
 ```
 
-example2_MATH_2_01.diff:\
+example2_MATH_2_01.diff:
 ```
 2c2
 <   x = -3 + 4 * (a - b)
@@ -129,7 +129,7 @@ example2_MATH_2_01.diff:\
 >   x = -3 + 4 / (a - b)
 ```
 
-example2_MATH_2_02.diff:\
+example2_MATH_2_02.diff:
 ```
 2c2
 <   x = -3 + 4 * (a - b)
@@ -155,7 +155,7 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_NEGATE-CONDITIONALS_2_00.diff:\
+example_NEGATE-CONDITIONALS_2_00.diff:
 ```
 2c2
 <     if (a < b):
@@ -163,7 +163,7 @@ example_NEGATE-CONDITIONALS_2_00.diff:\
 >     if (a >= b):
 ```
 
-example_NEGATE-CONDITIONALS_4_00.diff:\
+example_NEGATE-CONDITIONALS_4_00.diff:
 ```
 4c4
 <     if (b > c):
@@ -188,7 +188,7 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_FALSE-RETURNS_3_00.diff:\
+example_FALSE-RETURNS_3_00.diff:
 ```
 3c3
 <       return a
@@ -196,7 +196,7 @@ example_FALSE-RETURNS_3_00.diff:\
 >       return False
 ```
 
-example_FALSE-RETURNS_5_00.diff:\
+example_FALSE-RETURNS_5_00.diff:
 ```
 5c5
 <       return a
@@ -221,14 +221,14 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_TRUE-RETURNS_3_00.diff:\
+example_TRUE-RETURNS_3_00.diff:
 ```
 3c3
 <       return a
 ---
 >       return True
 ```
-example_TRUE-RETURNS_5_00.diff:\
+example_TRUE-RETURNS_5_00.diff:
 ```
 5c5
 <       return b
@@ -253,7 +253,7 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_NULL-RETURNS_3_00.diff:\
+example_NULL-RETURNS_3_00.diff:
 ```
 3c3
 <       return a
@@ -261,7 +261,7 @@ example_NULL-RETURNS_3_00.diff:\
 >       return None
 ```
 
-example_NULL-RETURNS_5_00.diff:\
+example_NULL-RETURNS_5_00.diff:
 ```
 5c5
 <       return b
@@ -282,7 +282,7 @@ def foo(a, b):
 
 should yield following diffs:
 
-example3_OBBN1_2_00.diff:\
+example3_OBBN1_2_00.diff:
 ```
 2c2
 <   return a & b
@@ -290,7 +290,7 @@ example3_OBBN1_2_00.diff:\
 >   return a | b
 ```
 
-example3_OBBN2_2_00.diff:\
+example3_OBBN2_2_00.diff:
 ```
 2c2
 <   return a & b
@@ -298,7 +298,7 @@ example3_OBBN2_2_00.diff:\
 >   return a
 ```
 
-example3_OBBN3_2_00.diff:\
+example3_OBBN3_2_00.diff:
 ```
 2c2
 <   return a & b
@@ -322,7 +322,7 @@ def foo(a):
 
 should yield following diffs:
 
-example1_CRCR1_2_00.diff:\
+example1_CRCR1_2_00.diff:
 ```
 2c2
 <   x = 3
@@ -330,7 +330,7 @@ example1_CRCR1_2_00.diff:\
 >   x = 1
 ```
 
-example1_CRCR2_2_00.diff:\
+example1_CRCR2_2_00.diff:
 ```
 2c2
 <   x = 3
@@ -338,7 +338,7 @@ example1_CRCR2_2_00.diff:\
 >   x = 0
 ```
 
-example1_CRCR3_2_00.diff:\
+example1_CRCR3_2_00.diff:
 ```
 2c2
 <   x = 3
@@ -346,7 +346,7 @@ example1_CRCR3_2_00.diff:\
 >   x = -1
 ```
 
-example1_CRCR4_2_00.diff:\
+example1_CRCR4_2_00.diff:
 ```
 2c2
 <   x = 3
@@ -354,7 +354,7 @@ example1_CRCR4_2_00.diff:\
 >   x = -3
 ```
 
-example1_CRCR5_2_00.diff:\
+example1_CRCR5_2_00.diff:
 ```
 2c2
 <   x = 3
@@ -362,7 +362,7 @@ example1_CRCR5_2_00.diff:\
 >   x = 3 + 1
 ```
 
-example1_CRCR6_2_00.diff:\
+example1_CRCR6_2_00.diff:
 ```
 2c2
 <   x = 3
