@@ -277,7 +277,7 @@ example1_CRCR5_2_00.diff:\
 
 example1_CRCR6_2_00.diff:\
 `-  x = 3`\
-`+  x = c - 1`
+`+  x = 3 - 1`
 
 
 ## Skeleton and Test Code
