@@ -230,11 +230,11 @@ example3_OBBN1_2_00.diff:\
 `-  return a & b`\
 `+  return a | b`
 
-example3_OBBN2_2_01.diff:\
+example3_OBBN2_2_00.diff:\
 `-  return a & b`\
 `+  return a`
 
-example3_OBBN3_2_02.diff:\
+example3_OBBN3_2_00.diff:\
 `-  return a & b`\
 `+  return b`
 
@@ -259,23 +259,23 @@ example1_CRCR1_2_00.diff:\
 `-  x = 3`\
 `+  x = 1`
 
-example1_CRCR2_2_01.diff:\
+example1_CRCR2_2_00.diff:\
 `-  x = 3`\
 `+  x = 0`
 
-example1_CRCR3_2_02.diff:\
+example1_CRCR3_2_00.diff:\
 `-  x = 3`\
 `+  x = -1`
 
-example1_CRCR4_2_03.diff:\
+example1_CRCR4_2_00.diff:\
 `-  x = 3`\
 `+  x = -3`
 
-example1_CRCR5_2_04.diff:\
+example1_CRCR5_2_00.diff:\
 `-  x = 3`\
 `+  x = 3 + 1`
 
-example1_CRCR6_2_05.diff:\
+example1_CRCR6_2_00.diff:\
 `-  x = 3`\
 `+  x = c - 1`
 
