@@ -13,12 +13,274 @@ it should apply mutation operators to all files under `examples/example1`, one m
 ```
 **If a mutation operator can generate multiple mutants from the same line in the same file**, sort the mutated line alphabetically and index them from 0 (use two digits, e.g., 00, 01, 02...). If there is only a single mutant, the index is naturally 0.
 
-### Mutation Operators
+## Mutation Operators
 
 You should implement the following mutation operators at the minimum:
-- PITest
 
-### Skeleton and Test Code
+### Conditionals Boundary Mutator (CONDITIONALS_BOUNDARY)
+
+Operator replaces relational operators according to the table below:
+![](img/table_CondBound.PNG)
+
+For example:
+```
+#example.py
+
+def foo(a, b, c):
+    if (a < b):
+        return a
+    if (b > c):
+        return b
+```
+
+should yield following diffs:
+
+example_CONDITIONALS_BOUNDARY_2_00.diff:\
+`-  if(a < b):`\
+`+  if(a <= b):`
+
+example_CONDITIONALS_BOUNDARY_4_00.diff:\
+`-  if(b > c):`\
+`+  if(b >= c):`
+
+### Increments Mutator (INCREMENTS)
+
+Operator replaces assignment increments with assignment decrements and vice versa.
+
+For example:
+```
+#example1.py
+
+def foo(a):
+    x = 3
+    for i in range(a):
+        x += 3
+```
+
+should yield following diffs:
+
+example1_INCREMENTS_4_00.diff:\
+`-      x += 3`\
+`+      x -= 3`
+
+### Invert Negatives Mutator (INVERT_NEGS)
+
+Operator inverts unary negations.
+
+For example:
+```
+#example2.py
+
+def foo(a, b):
+    x = -3 + 4 * (a - b)
+    return x
+```
+
+should yield following diffs:
+
+example2_INVERT_NEGS_2_00.diff:\
+`-  x = -3 + 4 * (a - b)`\
+`+  x = 3 + 4 * (a - b)`
+
+### Math Mutator (MATH)
+
+Operator replaces binary arithmetic operators according to the table below:
+![](img/table_MATH.PNG)
+
+For example:
+```
+#example2.py
+
+def foo(a, b):
+    x = -3 + 4 * (a - b)
+    return x
+```
+
+should yield following diffs:
+
+example2_MATH_2_00.diff:\
+`-  x = -3 + 4 * (a - b)`\
+`+  x = -3 - 4 * (a - b)`
+
+example2_MATH_2_01.diff:\
+`-  x = -3 + 4 * (a - b)`\
+`+  x = -3 + 4 / (a - b)`
+
+example2_MATH_2_02.diff:\
+`-  x = -3 + 4 * (a - b)`\
+`+  x = -3 + 4 * (a + b)`
+
+### Negate Conditionals Mutator (NEGATE_CONDITIONALS)
+
+Operator should replace all conditionals according to the table below:
+![](img/table_NEGATE_CONDITIONALS.PNG)
+
+For example:
+```
+#example.py
+
+def foo(a, b, c):
+    if (a < b):
+        return a
+    if (b > c):
+        return b
+```
+
+should yield following diffs:
+
+example_NEGATE_CONDITIONALS_2_00.diff:\
+`-  if(a < b):`\
+`+  if(a >= b):`
+
+example_NEAGTE_CONDITIONALS_4_00.diff:\
+`-  if(b > c):`\
+`+  if(b <= c):`
+
+### False returns Mutator (FALSE_RETURNS)
+
+Operator should replace return values with `False`.
+
+For example:
+```
+#example.py
+
+def foo(a, b, c):
+    if (a < b):
+        return a
+    if (b > c):
+        return b
+```
+
+should yield following diffs:
+
+example_FALSE_RETURNS_3_00.diff:\
+`-      return a`\
+`+      return False`
+
+example_FALSE_RETURNS_5_00.diff:\
+`-      return b`\
+`+      return False`
+
+
+### True returns Mutator (TRUE_RETURNS)
+
+Operator should replace return values with `True`.
+
+For example:
+```
+#example.py
+
+def foo(a, b, c):
+    if (a < b):
+        return a
+    if (b > c):
+        return b
+```
+
+should yield following diffs:
+
+example_TRUE_RETURNS_3_00.diff:\
+`-      return a`\
+`+      return True`
+
+example_TRUE_RETURNS_5_00.diff:\
+`-      return b`\
+`+      return True`
+
+### Null returns Mutator (NULL_RETURNS)
+
+Operator should replace return values with `None`.
+
+For example:
+```
+#example.py
+
+def foo(a, b, c):
+    if (a < b):
+        return a
+    if (b > c):
+        return b
+```
+
+should yield following diffs:
+
+example_NULL_RETURNS_3_00.diff:\
+`-      return a`\
+`+      return None`
+
+example_NULL_RETURNS_5_00.diff:\
+`-      return b`\
+`+      return None`
+
+### Bitwise Operator Mutator (OBBN)
+
+Operator consists of three sub-mutators OBBN1, OBBN2, and OBBN3 that respectively reverse bitwise operators, replace a bitwise operation by its first member, and by its second member.
+
+For example:
+```
+example3.py
+
+def foo(a, b):
+    return a & b
+```
+
+should yield following diffs:
+
+example3_OBBN1_2_00.diff:\
+`-  return a & b`\
+`+  return a | b`
+
+example3_OBBN2_2_01.diff:\
+`-  return a & b`\
+`+  return a`
+
+example3_OBBN3_2_02.diff:\
+`-  return a & b`\
+`+  return b`
+
+### Constant Replacement Mutator (CRCR)
+
+Operator mutates inline constant. The mutator is composed of 6 sub-mutators (CRCR1 to CRCR6) that mutate constants according to the table below.
+![](img/table_CRCR.PNG)
+
+For example:
+```
+#example1.py
+
+def foo(a):
+    x = 3
+    for i in range(a):
+        x += 3
+```
+
+should yield following diffs:
+
+example1_CRCR1_2_00.diff:\
+`-  x = 3`\
+`+  x = 1`
+
+example1_CRCR2_2_01.diff:\
+`-  x = 3`\
+`+  x = 0`
+
+example1_CRCR3_2_02.diff:\
+`-  x = 3`\
+`+  x = -1`
+
+example1_CRCR4_2_03.diff:\
+`-  x = 3`\
+`+  x = -3`
+
+example1_CRCR5_2_04.diff:\
+`-  x = 3`\
+`+  x = 3 + 1`
+
+example1_CRCR6_2_05.diff:\
+`-  x = 3`\
+`+  x = c - 1`
+
+
+## Skeleton and Test Code
 
 This repository includes a skeleton code named `pmut.py` for your profiler. Please keep the existing code and the command line interface provided, so that GitHub Classroom can run the automated grading scripts. 
 
@@ -52,10 +314,10 @@ In the kill matrix directory, there should be three files:
 
 Note that a mutant is killed if 1) the test outcome is different, or 2) the `stdout` or the `stderr` output is different, between the original and the mutated version. **At the end of the execution, the source directory should be reverted back to the original state.**
 
-### Libraries and Python Version
+## Libraries and Python Version
 
 The template repository is configured with Python 3.9. We will use numpy to write the kill matrix.
 
-### Submission Deadline
+## Submission Deadline
 
 You need to submit this assignment before **18:00 on 26th of May, 2021.**
