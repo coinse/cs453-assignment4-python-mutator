@@ -3,12 +3,10 @@ def bar1():
     b = 4
     c = a + b
     return -c
-
 def bar2():
-    a = 'foo'
-    b = 'bar'
+    a = "foo"
+    b = "bar"
     return a + b
-
 def bar3(x, y, c):
     y = -1 * y
     z = (x + y) * c
@@ -20,7 +18,7 @@ def bar4(a, b):
     elif a == b:
         return False
     else:
-        return None
+        return True
 
 def bar5(a):
     a += 1
