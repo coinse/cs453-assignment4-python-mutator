@@ -3,10 +3,10 @@
 With this assignment, we will try implementing a basic mutation testing tool for Python that can mutate the source code, run given `pytest` test suites, report changed behaviour, and generate kill matrices. The skeleton code, called `pmut.py`, specifies the required functionalities. Assume that the project you want to apply mutation testing to is scored under directory `examples/example1`. When you invoke `pmut.py` as follows:
 
 ```bash
-$ python3 pmut.py --action mutate --source examples/example1 --mutants ./mutation_diffs --kill ./kill_matrix
+$ python3 pmut.py --action mutate --source examples/example1 --mutants ./mutation_diffs
 ```
 
-it should apply mutation operators to all files under `examples/example1`, one mutation to one location in one file at a time, and generate mutants under `./mutated_versions`. You should generate each mutant as a diff against the original program, so that you can get the mutated version when you apply the patch from the root directory of the original project. Each diff file should be named using the following naming convention:
+it should apply mutation operators to all files under `examples/example1`, one mutation to one location in one file at a time, and generate mutants under `./mutation_diffs`. You should generate each mutant as a diff against the original program. Each diff file should be named using the following naming convention:
 
 ```
 [mutation_operator]_[target_filename]_[line_number]_[index].diff
@@ -17,7 +17,7 @@ it should apply mutation operators to all files under `examples/example1`, one m
 
 You should implement the following mutation operators at the minimum:
 
-### Conditionals Boundary Mutator (CONDITIONALS_BOUNDARY)
+### Conditionals Boundary Mutator (CONDITIONALS-BOUNDARY)
 
 Operator replaces relational operators according to the table below:
 ![](img/table_CondBound.PNG)
@@ -35,14 +35,21 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_CONDITIONALS_BOUNDARY_2_00.diff:\
-`-  if(a < b):`\
-`+  if(a <= b):`
+example_CONDITIONALS-BOUNDARY_2_00.diff:\
+```
+2c2
+<     if (a < b):
+---
+>     if (a <= b):
+```
 
-example_CONDITIONALS_BOUNDARY_4_00.diff:\
-`-  if(b > c):`\
-`+  if(b >= c):`
-
+example_CONDITIONALS-BOUNDARY_4_00.diff:\
+```
+4c4
+<     if (b > c):
+---
+>     if (b >= c):
+```
 ### Increments Mutator (INCREMENTS)
 
 Operator replaces assignment increments with assignment decrements and vice versa.
@@ -60,10 +67,14 @@ def foo(a):
 should yield following diffs:
 
 example1_INCREMENTS_4_00.diff:\
-`-      x += 3`\
-`+      x -= 3`
+```
+4c4
+<       x += 3
+---
+>       x -= 3:
+```
 
-### Invert Negatives Mutator (INVERT_NEGS)
+### Invert Negatives Mutator (INVERT-NEGS)
 
 Operator inverts unary negations.
 
@@ -78,9 +89,13 @@ def foo(a, b):
 
 should yield following diffs:
 
-example2_INVERT_NEGS_2_00.diff:\
-`-  x = -3 + 4 * (a - b)`\
-`+  x = 3 + 4 * (a - b)`
+example2_INVERT-NEGS_2_00.diff:\
+```
+2c2
+<   x = -3 + 4 * (a - b)
+---
+>   x = 3 + 4 * (a - b)
+```
 
 ### Math Mutator (MATH)
 
@@ -99,18 +114,30 @@ def foo(a, b):
 should yield following diffs:
 
 example2_MATH_2_00.diff:\
-`-  x = -3 + 4 * (a - b)`\
-`+  x = -3 - 4 * (a - b)`
+```
+2c2
+<   x = -3 + 4 * (a - b)
+---
+>   x = -3 - 4 * (a - b)
+```
 
 example2_MATH_2_01.diff:\
-`-  x = -3 + 4 * (a - b)`\
-`+  x = -3 + 4 / (a - b)`
+```
+2c2
+<   x = -3 + 4 * (a - b)
+---
+>   x = -3 + 4 / (a - b)
+```
 
 example2_MATH_2_02.diff:\
-`-  x = -3 + 4 * (a - b)`\
-`+  x = -3 + 4 * (a + b)`
+```
+2c2
+<   x = -3 + 4 * (a - b)
+---
+>   x = -3 + 4 * (a + b)
+```
 
-### Negate Conditionals Mutator (NEGATE_CONDITIONALS)
+### Negate Conditionals Mutator (NEGATE-CONDITIONALS)
 
 Operator should replace all conditionals according to the table below:
 ![](img/table_NEGATE_CONDITIONALS.PNG)
@@ -128,15 +155,23 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_NEGATE_CONDITIONALS_2_00.diff:\
-`-  if(a < b):`\
-`+  if(a >= b):`
+example_NEGATE-CONDITIONALS_2_00.diff:\
+```
+2c2
+<     if (a < b):
+---
+>     if (a >= b):
+```
 
-example_NEAGTE_CONDITIONALS_4_00.diff:\
-`-  if(b > c):`\
-`+  if(b <= c):`
+example_NEGATE-CONDITIONALS_4_00.diff:\
+```
+4c4
+<     if (b > c):
+---
+>     if (b <= c):
+```
 
-### False returns Mutator (FALSE_RETURNS)
+### False returns Mutator (FALSE-RETURNS)
 
 Operator should replace return values with `False`.
 
@@ -153,16 +188,23 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_FALSE_RETURNS_3_00.diff:\
-`-      return a`\
-`+      return False`
+example_FALSE-RETURNS_3_00.diff:\
+```
+3c3
+<       return a
+---
+>       return False
+```
 
-example_FALSE_RETURNS_5_00.diff:\
-`-      return b`\
-`+      return False`
+example_FALSE-RETURNS_5_00.diff:\
+```
+5c5
+<       return a
+---
+>       return False
+```
 
-
-### True returns Mutator (TRUE_RETURNS)
+### True returns Mutator (TRUE-RETURNS)
 
 Operator should replace return values with `True`.
 
@@ -179,15 +221,22 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_TRUE_RETURNS_3_00.diff:\
-`-      return a`\
-`+      return True`
+example_TRUE-RETURNS_3_00.diff:\
+```
+3c3
+<       return a
+---
+>       return True
+```
+example_TRUE-RETURNS_5_00.diff:\
+```
+5c5
+<       return b
+---
+>       return True
+```
 
-example_TRUE_RETURNS_5_00.diff:\
-`-      return b`\
-`+      return True`
-
-### Null returns Mutator (NULL_RETURNS)
+### Null returns Mutator (NULL-RETURNS)
 
 Operator should replace return values with `None`.
 
@@ -204,14 +253,21 @@ def foo(a, b, c):
 
 should yield following diffs:
 
-example_NULL_RETURNS_3_00.diff:\
-`-      return a`\
-`+      return None`
+example_NULL-RETURNS_3_00.diff:\
+```
+3c3
+<       return a
+---
+>       return None
+```
 
-example_NULL_RETURNS_5_00.diff:\
-`-      return b`\
-`+      return None`
-
+example_NULL-RETURNS_5_00.diff:\
+```
+5c5
+<       return b
+---
+>       return None
+```
 ### Bitwise Operator Mutator (OBBN)
 
 Operator consists of three sub-mutators OBBN1, OBBN2, and OBBN3 that respectively reverse bitwise operators, replace a bitwise operation by its first member, and by its second member.
@@ -227,17 +283,28 @@ def foo(a, b):
 should yield following diffs:
 
 example3_OBBN1_2_00.diff:\
-`-  return a & b`\
-`+  return a | b`
+```
+2c2
+<   return a & b
+---
+>   return a | b
+```
 
 example3_OBBN2_2_00.diff:\
-`-  return a & b`\
-`+  return a`
+```
+2c2
+<   return a & b
+---
+>   return a
+```
 
 example3_OBBN3_2_00.diff:\
-`-  return a & b`\
-`+  return b`
-
+```
+2c2
+<   return a & b
+---
+>   return b
+```
 ### Constant Replacement Mutator (CRCR)
 
 Operator mutates inline constant. The mutator is composed of 6 sub-mutators (CRCR1 to CRCR6) that mutate constants according to the table below.
@@ -256,29 +323,52 @@ def foo(a):
 should yield following diffs:
 
 example1_CRCR1_2_00.diff:\
-`-  x = 3`\
-`+  x = 1`
+```
+2c2
+<   x = 3
+---
+>   x = 1
+```
 
 example1_CRCR2_2_00.diff:\
-`-  x = 3`\
-`+  x = 0`
+```
+2c2
+<   x = 3
+---
+>   x = 0
+```
 
 example1_CRCR3_2_00.diff:\
-`-  x = 3`\
-`+  x = -1`
+```
+2c2
+<   x = 3
+---
+>   x = -1
+```
 
 example1_CRCR4_2_00.diff:\
-`-  x = 3`\
-`+  x = -3`
+```
+2c2
+<   x = 3
+---
+>   x = -3
+```
 
 example1_CRCR5_2_00.diff:\
-`-  x = 3`\
-`+  x = 3 + 1`
+```
+2c2
+<   x = 3
+---
+>   x = 3 + 1
+```
 
 example1_CRCR6_2_00.diff:\
-`-  x = 3`\
-`+  x = 3 - 1`
-
+```
+2c2
+<   x = 3
+---
+>   x = 3 - 1
+```
 
 ## Skeleton and Test Code
 
@@ -312,7 +402,7 @@ In the kill matrix directory, there should be three files:
 - Mutant Index File (`mutation_index.json`): this file should contain the dictionary of mutant name to kill matrix column Index. Use the same mutant naming sonvention for dictionary keys.
 - Kill Matrix File (`kill_matrix.np`): this file should be a `numpy` array of type `int32`, whose size is [number of test cases] by [number of mutants]. The array should be saved using [`savetxt`](https://numpy.org/doc/stable/reference/generated/numpy.savetxt.html#numpy.savetxt) function in `numpy`: 1 corresponds to the corresponding mutant (column index) killed by the corresponding test case (row index), and 0 otherwise.
 
-Note that a mutant is killed if 1) the test outcome is different, or 2) the `stdout` or the `stderr` output is different, between the original and the mutated version. **At the end of the execution, the source directory should be reverted back to the original state.**
+Note that a mutant is killed if a test that passes when executed with the original program fails with the mutant program. **At the end of the execution, the source directory should be reverted back to the original state.**
 
 ## Libraries and Python Version
 
