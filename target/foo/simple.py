@@ -20,4 +20,4 @@ def foo3(a, b):
 
 def foo4(a):
     x = -a
-    return str(34) + " + " + str(x)
+    return str(34) + ' + ' + str(x)
