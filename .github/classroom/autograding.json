@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "public test cases",
+      "setup": "python -m pip install pytest numpy",
+      "run": "python -m pytest --ignore=target",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    }
+  ]
+}
