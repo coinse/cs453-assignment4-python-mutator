@@ -2,5 +2,5 @@
 <     return str(34) + ' + ' + str(x)
 \\ No newline at end of file
 ---
->     return str(34) - ' + ' + str(x)
+>     return str(34) + ' + ' - str(x)
 \\ No newline at end of file
