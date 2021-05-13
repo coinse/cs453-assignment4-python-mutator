@@ -1,4 +1,4 @@
 9c9
 <         return a & (b | c)
 ---
->         return b | c
+>         return a & c

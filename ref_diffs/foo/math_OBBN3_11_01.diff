@@ -1,4 +1,4 @@
 11c11
 <         return a | b & c
 ---
->         return a | c
+>         return b & c

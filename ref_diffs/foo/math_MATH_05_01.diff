@@ -1,4 +1,4 @@
 5c5
 <         return a * c + d
 ---
->         return a * c - d
+>         return a / c + d

@@ -9,12 +9,12 @@ import subprocess as sp
 from test_config import *
 
 def run_pmut_mutate(source, mut_loc):
-    cmd = ['python3', 'pmut.py', '--action', 'mutate', '--source', source, '--mutants', mut_loc]
+    cmd = ['python3.9', 'pmut.py', '--action', 'mutate', '--source', source, '--mutants', mut_loc]
     process = sp.run(cmd, capture_output=True, text=True)
     return process.stdout
 
 def run_pmut_execute(source, kill_loc, mut_loc = None):
-    cmd = ['python3', 'pmut.py', '--action', 'execute', '--source', source, '--kill', kill_loc]
+    cmd = ['python3.9', 'pmut.py', '--action', 'execute', '--source', source, '--kill', kill_loc]
     if mut_loc is not None:
         cmd += ['--mutants', mut_loc]
     print(cmd)
@@ -59,8 +59,8 @@ def test_foo_execute():
     assert len(out_lines) == 3
     t_num, k_num, mut_score, m_killed, m_total = parse_execute_output(out_lines)
     assert t_num == 21
-    assert k_num == 89
-    assert (mut_score - 95.70) < 1e-1
+    assert k_num == 79
+    assert (mut_score - 84.95) < 1e-1
     assert m_killed == k_num
     assert m_total == 93
 
@@ -71,7 +71,7 @@ def test_bar_execute():
     assert len(out_lines) == 3
     t_num, k_num, mut_score, m_killed, m_total = parse_execute_output(out_lines)
     assert t_num == 23
-    assert k_num == 166
-    assert (mut_score - 91.21) < 1e-1
+    assert k_num == 154
+    assert (mut_score - 84.62) < 1e-1
     assert m_killed == k_num
     assert m_total == 182
