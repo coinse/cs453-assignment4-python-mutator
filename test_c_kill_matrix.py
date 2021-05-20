@@ -27,7 +27,7 @@ def test_foo_km():
     stu_matrix = np.loadtxt(os.path.join(stu_path, MATRIX_FILE), dtype=np.int32)
     stu_shift_matrix = stu_matrix[row_permutation, :]
     stu_shift_matrix = stu_shift_matrix[:, col_permutation]
-    assert np.all(ref_matrix == stu_matrix)
+    assert np.all(ref_matrix == stu_shift_matrix)
 
 def test_bar_km():
     stu_path = STU_BAR_KM_PATH
@@ -42,7 +42,5 @@ def test_bar_km():
     stu_matrix = np.loadtxt(os.path.join(stu_path, MATRIX_FILE), dtype=np.int32)
     stu_shift_matrix = stu_matrix[row_permutation, :]
     stu_shift_matrix = stu_shift_matrix[:, col_permutation]
-    assert np.all(ref_matrix == stu_matrix)
+    assert np.all(ref_matrix == stu_shift_matrix)
 
-if __name__ == '__main__':
-    test_foo_km()
