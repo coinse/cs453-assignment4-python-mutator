@@ -412,4 +412,4 @@ The template repository is configured with Python 3.9. `numpy` is used to write 
 
 ## Submission Deadline
 
-You need to submit this assignment before **18:00 on 26th of May, 2021.**
+You need to submit this assignment before **18:00 on 08th of May, 2023.**
