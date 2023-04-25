@@ -9,12 +9,12 @@ import subprocess as sp
 from test_config import *
 
 def run_pmut_mutate(source, mut_loc):
-    cmd = ['python3.9', 'pmut.py', '--action', 'mutate', '--source', source, '--mutants', mut_loc]
+    cmd = ['python', 'pmut.py', '--action', 'mutate', '--source', source, '--mutants', mut_loc]
     process = sp.run(cmd, capture_output=True, text=True)
     return process.stdout
 
 def run_pmut_execute(source, kill_loc, mut_loc = None):
-    cmd = ['python3.9', 'pmut.py', '--action', 'execute', '--source', source, '--kill', kill_loc]
+    cmd = ['python', 'pmut.py', '--action', 'execute', '--source', source, '--kill', kill_loc]
     if mut_loc is not None:
         cmd += ['--mutants', mut_loc]
     print(cmd)
