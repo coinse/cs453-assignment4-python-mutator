@@ -2,6 +2,7 @@ import ast
 import argparse
 import sys
 from copy import deepcopy
+import subprocess
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Mutation Testing Tool.')
