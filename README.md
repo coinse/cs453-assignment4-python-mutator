@@ -1,11 +1,11 @@
-# CS453 Assignment 3: Mutation Testing Tool  for Python
+# CS453 Assignment 4: Mutation Testing Tool  for Python
 
 ## Overview
 
 With this assignment, we will try implementing a basic mutation testing tool for Python that can mutate the source code, run given `pytest` test suites, report changed behaviour, and generate kill matrices. The skeleton code, called `pmut.py`, specifies the required functionalities. For example, assume that the project you want to apply mutation testing to is scored under directory `examples/example1`. When you invoke `pmut.py` as follows:
 
 ```bash
-$ python3 pmut.py --action mutate --source examples/example1 --mutants ./mutation_diffs
+$ python pmut.py --action mutate --source examples/example1 --mutants ./mutation_diffs
 ```
 
 it should apply mutation operators to all files under `examples/example1`, one mutation to one location in one file at a time, and generate mutants under `./mutation_diffs`. You should generate each mutant as a diff against the original program, instrumented by the command line `diff` command. Each diff file should be named using the following naming convention:
@@ -409,7 +409,3 @@ Note that a mutant is killed if a test that passes when executed with the origin
 ## Libraries and Python Version
 
 The template repository is configured with Python 3.9. `numpy` is used to write the kill matrix.
-
-## Submission Deadline
-
-You need to submit this assignment before **18:00 on 08th of May, 2023.**
