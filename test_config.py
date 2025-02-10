@@ -1,5 +1,3 @@
-USE_MUT_IN_EXEC = False
-
 STU_FOO_MUT_DIR = './mut_diff_foo/'
 STU_BAR_MUT_DIR = './mut_diff_bar/'
 REF_FOO_MUT_DIR = './ref_diffs/foo/'
