@@ -53,7 +53,7 @@ def test_bar_mutate():
     assert mut_num == 182
 
 def test_foo_execute():
-    mut_loc = STU_FOO_MUT_DIR if USE_MUT_IN_EXEC else None
+    mut_loc = STU_FOO_MUT_DIR if os.path.exists(STU_FOO_MUT_DIR) else None
     foo_out = run_pmut_execute('./target/foo/', STU_FOO_KM_PATH, mut_loc)
     out_lines = foo_out.strip().split('\n')
     assert len(out_lines) == 3
@@ -65,7 +65,7 @@ def test_foo_execute():
     assert m_total == 93
 
 def test_bar_execute():
-    mut_loc = STU_BAR_MUT_DIR if USE_MUT_IN_EXEC else None
+    mut_loc = STU_BAR_MUT_DIR if os.path.exists(STU_BAR_MUT_DIR) else None
     bar_out = run_pmut_execute('./target/bar/', STU_BAR_KM_PATH, mut_loc)
     out_lines = bar_out.strip().split('\n')
     assert len(out_lines) == 3
