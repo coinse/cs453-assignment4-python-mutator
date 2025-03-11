@@ -424,3 +424,12 @@ The input generator should be implemented under the name `pmutkiller.py`. The co
 - - An example of an equivalent mutant that CANNOT be killed (i.e., a program, a mutation diff, and an instruction of how to use the tool to generate the PyTest case)
 
 For this goal, you will have to reuse/extend your solution for Assignment 3. Use the Z3 SMT Solver as in Assignment 3. If correctly and sufficiently impleented, you will be given 10% of the course grade as bonus.
+
+### Report
+
+In addition to the implementation, submit a brief report as part of the repository. Name the file `report.pdf` in the root directory of the assignment repository. The report should contain the following:
+
+- A brief description of the problem in your own understanding
+- How you designed your solution
+- Any unique idea/technique that you think you contributed to the implementation
+- A brief summary of what you've learnt
