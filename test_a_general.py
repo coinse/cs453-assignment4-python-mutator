@@ -5,6 +5,7 @@ Their main purpose is:
  2) Check that the command line interface is designed as specified.
 '''
 
+import os
 import subprocess as sp
 from test_config import *
 
