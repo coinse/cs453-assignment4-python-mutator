@@ -433,3 +433,8 @@ In addition to the implementation, submit a brief report as part of the reposito
 - How you designed your solution
 - Any unique idea/technique that you think you contributed to the implementation
 - A brief summary of what you've learnt
+
+### Important Notes
+
+- You can run the public test cases yourself using the files included in the repository: they are pytest test cases.
+- **DO NOT USE generative AI models**: they may be able to write mutation tool for you, but then **what do you learn from the experience?** If you really feel stuck, ask questions on Slack instead.
